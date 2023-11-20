@@ -4,7 +4,17 @@ public static class CalorieCounting
 {
     public static long GetHighestCalorieCount()
     {
-        var file = File.ReadLines(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName, @"2022\1\Calories.txt"));
+        return CreateCalorieList().Max();
+    }
+
+    public static long GetSumOfThreeHighestCalorieCounts()
+    {
+        return CreateCalorieList().OrderDescending().Take(3).Sum();
+    }
+
+    private static IReadOnlyList<long> CreateCalorieList()
+    {
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "1", "Calories.txt"));
 
         var calories = new List<long>();
         var currentCalorieCount = 0L;
@@ -19,8 +29,7 @@ public static class CalorieCounting
 
             currentCalorieCount += long.Parse(line);
         }
-        
-        //return calories.Max();
-        return calories.OrderDescending().Take(3).Sum();
+
+        return calories;
     }
 }

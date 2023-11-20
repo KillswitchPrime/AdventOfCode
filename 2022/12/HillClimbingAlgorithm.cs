@@ -31,8 +31,7 @@ public static class HillClimbingAlgorithm
 
     private static List<List<Tile>> CreateMap()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\12\\HeightMap.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "12", "HeightMap.txt"));
 
         var map = new List<List<Tile>>();
 

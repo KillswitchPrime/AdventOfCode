@@ -20,7 +20,7 @@ public static class TreetopTreeHouse
 
     private static List<List<Tree>> CreateTrees()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\8\\TreeHeights.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "8", "TreeHeights.txt"));
         var trees = new List<List<Tree>>();
 
         var indexY = 0;

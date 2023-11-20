@@ -15,7 +15,7 @@ public static class NoSpaceLeftOnDevice
 
     private static List<long> GetFileSizes()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\7\\ComputerInstructions.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "7", "ComputerInstructions.txt"));
 
         var directorySizes = new List<long>();
         var currentDirectory = new Node("/",new List<Node>());

@@ -4,7 +4,7 @@ public static class RockPaperScissors
 {
     public static long CalculateScore()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\2\\StrategyGuid.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "2", "StrategyGuid.txt"));
 
         var totalScore = 0L;
         foreach (var line in file)
@@ -42,7 +42,7 @@ public static class RockPaperScissors
 
     public static long CalculateActualScore()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\2\\StrategyGuid.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "2", "StrategyGuid.txt"));
 
         var totalScore = 0L;
         foreach (var line in file)

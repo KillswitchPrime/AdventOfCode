@@ -100,8 +100,7 @@ public static class DistressSignal
     
     private static List<PacketPair> CreatePacketPairs()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\13\\PacketPairs.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "13", "PacketPairs.txt"));
 
         var packets = new List<PacketPair>();
 
@@ -149,8 +148,7 @@ public static class DistressSignal
     
     private static List<string> CreatePacketList()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\13\\PacketPairs.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "13", "PacketPairs.txt"));
 
         return file.Where(l => string.IsNullOrWhiteSpace(l) is false).ToList();
     }

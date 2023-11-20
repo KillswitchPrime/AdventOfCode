@@ -77,8 +77,7 @@ public static class BeaconExclusionZone
 
     private static Dictionary<Point, Point> GetSensorReport()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\15\\SensorData.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "15", "SensorData.txt"));
 
         var sensorReport = new Dictionary<Point, Point>();
 

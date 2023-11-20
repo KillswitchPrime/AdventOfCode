@@ -130,8 +130,7 @@ public static class RegolithReservoir
 
     private static Dictionary<string, GridItem> CreateGrid(bool hasFloor = false)
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\14\\RockPaths.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "14", "RockPaths.txt"));
 
         var rockPaths = new List<List<Point>>();
 

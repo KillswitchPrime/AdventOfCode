@@ -4,7 +4,7 @@ public static class CampCleanup
 {
     public static long CalculateCleanupOverlap()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\4\\AssignmentPairs.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "4", "AssignmentPairs.txt"));
 
         var overlappedPairs = 0L;
         foreach (var line in file)
@@ -24,7 +24,7 @@ public static class CampCleanup
     
     public static long CalculateCleanupPartialOverlap()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\4\\AssignmentPairs.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "4", "AssignmentPairs.txt"));
 
         var overlappedPairs = 0L;
         foreach (var line in file)

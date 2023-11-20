@@ -4,8 +4,7 @@ public static class PyroclasticFlow
 {
     public static long CalculateTowerHeight()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\17\\GasJets.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "17", "GasJets.txt"));
 
         var jets = file.SelectMany(line => line).ToList();
 
