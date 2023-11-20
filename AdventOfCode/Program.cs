@@ -20,7 +20,8 @@ using _2022._7;
 using _2022._8;
 using _2022._9;
 
-Console.WriteLine($"Calorie Counting, Highest amount of calories: {CalorieCounting.GetHighestCalorieCount()}");
+Console.WriteLine($"Calorie Counting, Highest calorie item: {CalorieCounting.GetHighestCalorieCount()}");
+Console.WriteLine($"Calorie Counting, Highest sum of calories: {CalorieCounting.GetSumOfThreeHighestCalorieCounts()}");
 Console.WriteLine($"Rock Paper Scissors total score: {RockPaperScissors.CalculateScore()}");
 Console.WriteLine($"Rock Paper Scissors actual score: {RockPaperScissors.CalculateActualScore()}");
 Console.WriteLine($"Rucksack Organization priority score: {RucksackOrganization.CalculatePriorities()}");
@@ -50,4 +51,4 @@ Console.Write("Units of sand that come to rest before sand starts flowing into t
 //Console.WriteLine($"Positions that cannot contain a beacon in the row where y=2000000: {BeaconExclusionZone.CountIneligibleBeaconPositions()}");
 //Console.WriteLine($"Distress signal location: {BeaconExclusionZone.FindDistressSignalLocation()}"); UNFINISHED
 //Console.WriteLine($"The most most pressure that can be released in 30 minutes: {ProboscideaVolcanium.MaximizePressureRelease()}");
-Console.WriteLine($"The height of the tower after 2022 rocks have fallen down: {PyroclasticFlow.CalculateTowerHeight()}");
+//Console.WriteLine($"The height of the tower after 2022 rocks have fallen down: {PyroclasticFlow.CalculateTowerHeight()}");

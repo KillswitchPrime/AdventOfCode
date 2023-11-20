@@ -37,8 +37,7 @@ public static class MonkeyInTheMiddle
 
     private static List<Monkey> CreateMonkeys()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\11\\SimianShenanigans.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "11", "SimianShenanigans.txt"));
 
         var monkeys = new List<Monkey>();
         var monkeyNeighbours = new List<string>();

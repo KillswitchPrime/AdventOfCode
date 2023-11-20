@@ -4,7 +4,7 @@ public static class RucksackOrganization
 {
     public static long CalculatePriorities()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\3\\Rucksacks.txt").ToList();
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "3", "Rucksacks.txt"));
 
         var prioritySum = 0L;
         foreach (var line in file)
@@ -29,7 +29,7 @@ public static class RucksackOrganization
 
     public static long CalculateBadgePriority()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\3\\Rucksacks.txt").ToList();
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "3", "Rucksacks.txt")).ToList();
 
         var prioritySum = 0L;
         for(var i = 0; i < file.Count; i+=3)

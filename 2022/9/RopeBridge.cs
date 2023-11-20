@@ -4,8 +4,7 @@ public static class RopeBridge
 {
     public static long CalculateRopeTailPositions()
     {
-        var instructions = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\9\\RopeMotions.txt");
+        var instructions = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "9", "RopeMotions.txt"));
         
         var rope = new Rope(2);
         rope.PerformMotions(instructions);
@@ -17,8 +16,7 @@ public static class RopeBridge
 
     public static long CalculateLongRopeTailPositions()
     {
-        var instructions = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\9\\RopeMotions.txt");
+        var instructions = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "9", "RopeMotions.txt"));
         
         var rope = new Rope(10);
         rope.PerformMotions(instructions);

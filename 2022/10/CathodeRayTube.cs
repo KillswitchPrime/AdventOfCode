@@ -4,8 +4,7 @@ public static class CathodeRayTube
 {
     public static long GetSumSignalStrengths()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\10\\ClockInstructions.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "10", "ClockInstructions.txt"));
 
         var signalStrengthSum = 0L;
         var register = 1;
@@ -42,8 +41,7 @@ public static class CathodeRayTube
 
     public static void DrawCRTScreen()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\10\\ClockInstructions.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "10", "ClockInstructions.txt"));
 
         var register = 1;
         var cycle = 0;

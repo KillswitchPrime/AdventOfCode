@@ -4,8 +4,7 @@ public static class ProboscideaVolcanium
 {
     public static long MaximizePressureRelease()
     {
-        var file = File.ReadLines(
-            "C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\16\\PipeValves.txt");
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "16", "PipeValves.txt"));
 
         var valves = new Dictionary<string, Valve>();
         var tunnels = new Dictionary<string, List<string>>();

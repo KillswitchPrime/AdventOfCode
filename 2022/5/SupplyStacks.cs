@@ -50,7 +50,7 @@ public static class SupplyStacks
 
     private static Tuple<List<string>, Dictionary<int, Stack<string>>> GenerateCargoStacks()
     {
-        var file = File.ReadLines("C:\\Users\\ChristopherIshaqueJa\\RiderProjects\\AdventOfCode2022\\AdventOfCode2022\\5\\CargoCrates.txt").ToList();
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "5", "CargoCrates.txt")).ToList();
         var initialCargoState = file.Take(file.FindIndex(string.IsNullOrWhiteSpace)).ToList();
         var cargoInstructions = file.Skip(file.FindIndex(string.IsNullOrWhiteSpace) + 1).ToList();
 
