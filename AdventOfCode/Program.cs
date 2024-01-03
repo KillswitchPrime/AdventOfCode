@@ -20,18 +20,28 @@ using _2022._7;
 using _2022._8;
 using _2022._9;
 using _2023._1;
+using _2023._2;
+using _2023._3;
+using _2023._4;
+using _2023._5;
 
 // Run2022();
 Run2023();
 
 #region 2023
-
 void Run2023()
 {
     Console.WriteLine($"Trebuchet, sum of calibrations: {Trebuchet.SumCalibrations()}");
     Console.WriteLine($"Trebuchet, sum of real calibrations: {Trebuchet.SumRealCalibrations()}");
+    Console.WriteLine($"Cube Conundrum, sum of game ids: {CubeConundrum.SumGameIds()}");
+    Console.WriteLine($"Cube Conundrum, sum of cube powers: {CubeConundrum.SumCubePowers()}");
+    Console.WriteLine($"Gear Ratios, sum of valid parts: {GearRatios.SumPartNumbers().Item1}");
+    Console.WriteLine($"Gear Ratios, sum of valid gears: {GearRatios.SumPartNumbers().Item2}");
+    Console.WriteLine($"Scratchcards, sum of winning scratchcards: {Scratchcards.SumScratchcards()}");
+    Console.WriteLine($"Scratchcards, number of total scratchcards: {Scratchcards.SumTotalNumberOfScratchcards()}");
+    Console.WriteLine($"If You Give A Seed A Fertilizer, lowest location number of initial seed: {IfYouGiveASeedAFertilizer.LowestLocationNumberOfSeed()}");
+    Console.WriteLine($"If You Give A Seed A Fertilizer, lowest location number of initial seed ranges: {IfYouGiveASeedAFertilizer.LowestLocationNumberOfSeed(isPart2: true)}");
 }
-
 #endregion
 
 #region 2022
