@@ -1,4 +1,4 @@
-﻿using System.Net.Sockets;
+﻿using System.Diagnostics;
 
 namespace _2023._5;
 
@@ -6,7 +6,7 @@ public static class IfYouGiveASeedAFertilizer
 {
     public static long LowestLocationNumberOfSeed(bool isPart2 = false)
     {
-        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "5", "Almanac.txt"));
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "5", "Sample.txt"));
         var seeds = new List<long>();
         var soilMaps = new List<Tuple<long,long,long>>();
         var fertilizersMaps = new List<Tuple<long,long,long>>();
@@ -93,74 +93,38 @@ public static class IfYouGiveASeedAFertilizer
                     locationMaps.Add(new Tuple<long, long, long>(locations[0], locations[1], locations[2]));
                     break;
             }
+            soilMaps.Sort();
+            fertilizersMaps.Sort();
+            waterMaps.Sort();
+            lightMaps.Sort();
+            temperatureMaps.Sort();
+            humidityMaps.Sort();
+            locationMaps.Sort();
         }
 
         if (isPart2)
         {
-            for (var i = 0; i < seeds.Count; i += 2)
+            foreach (var locationMap in locationMaps)
             {
-                for (var ii = seeds[i]; ii <= seeds[i] + seeds[i + 1]; ii++)
-                { 
-                    var seedSoil = ii;
-                    foreach (var soilMap in soilMaps)
-                    {
-                        seedSoil = GetMappedSeed(ii, soilMap.Item1, soilMap.Item2, soilMap.Item3);
-                        if (seedSoil != ii)
-                            break;
-                    }
+                var currentLocation = GetCurrentLocation(locationMap.Item1, locationMap.Item3);
+                var location = GetMappedSeedReverse(currentLocation, locationMaps);
+                var humidity = GetMappedSeedReverse(location, humidityMaps);
+                var temperature = GetMappedSeedReverse(humidity, temperatureMaps);
+                var light = GetMappedSeedReverse(temperature, lightMaps);
+                var water = GetMappedSeedReverse(light, waterMaps);
+                var fertilizer = GetMappedSeedReverse(water, fertilizersMaps);
+                var soil = GetMappedSeedReverse(fertilizer, soilMaps);
 
-                    var seedFertilizer = seedSoil;
-                    foreach (var fertilizerMap in fertilizersMaps)
+                foreach (var seed in soil)
+                {
+                    for (var i = 0; i < seeds.Count; i += 2)
                     {
-                        seedFertilizer = GetMappedSeed(seedFertilizer, fertilizerMap.Item1, fertilizerMap.Item2,
-                            fertilizerMap.Item3);
-                        if (seedFertilizer != seedSoil)
-                            break;
+                        if(seed < seeds[i] || seed > seeds[i] + seeds[i + 1])
+                            continue;
+                        
+                        
+                        return currentLocation.Last();
                     }
-
-                    var seedWater = seedFertilizer;
-                    foreach (var waterMap in waterMaps)
-                    {
-                        seedWater = GetMappedSeed(seedWater, waterMap.Item1, waterMap.Item2, waterMap.Item3);
-                        if (seedWater != seedFertilizer)
-                            break;
-                    }
-
-                    var seedLight = seedWater;
-                    foreach (var lightMap in lightMaps)
-                    {
-                        seedLight = GetMappedSeed(seedLight, lightMap.Item1, lightMap.Item2, lightMap.Item3);
-                        if (seedLight != seedWater)
-                            break;
-                    }
-
-                    var seedTemperature = seedLight;
-                    foreach (var temperatureMap in temperatureMaps)
-                    {
-                        seedTemperature = GetMappedSeed(seedTemperature, temperatureMap.Item1, temperatureMap.Item2,
-                            temperatureMap.Item3);
-                        if (seedTemperature != seedLight)
-                            break;
-                    }
-
-                    var seedHumidity = seedTemperature;
-                    foreach (var humidityMap in humidityMaps)
-                    {
-                        seedHumidity = GetMappedSeed(seedHumidity, humidityMap.Item1, humidityMap.Item2, humidityMap.Item3);
-                        if (seedHumidity != seedTemperature)
-                            break;
-                    }
-
-                    var seedLocation = seedHumidity;
-                    foreach (var locationMap in locationMaps)
-                    {
-                        seedLocation = GetMappedSeed(seedLocation, locationMap.Item1, locationMap.Item2, locationMap.Item3);
-                        if (seedLocation != seedHumidity)
-                            break;
-                    }
-
-                    if (seedLocation < lowestLocation)
-                        lowestLocation = seedLocation;
                 }
             }
         }
@@ -171,7 +135,7 @@ public static class IfYouGiveASeedAFertilizer
                 var seedSoil = seed;
                 foreach (var soilMap in soilMaps)
                 {
-                    seedSoil = GetMappedSeed(seed, soilMap.Item1, soilMap.Item2, soilMap.Item3);
+                    seedSoil = GetMappedValue(seed, soilMap.Item1, soilMap.Item2, soilMap.Item3);
                     if (seedSoil != seed)
                         break;
                 }
@@ -179,7 +143,7 @@ public static class IfYouGiveASeedAFertilizer
                 var seedFertilizer = seedSoil;
                 foreach (var fertilizerMap in fertilizersMaps)
                 {
-                    seedFertilizer = GetMappedSeed(seedFertilizer, fertilizerMap.Item1, fertilizerMap.Item2,
+                    seedFertilizer = GetMappedValue(seedFertilizer, fertilizerMap.Item1, fertilizerMap.Item2,
                         fertilizerMap.Item3);
                     if (seedFertilizer != seedSoil)
                         break;
@@ -188,7 +152,7 @@ public static class IfYouGiveASeedAFertilizer
                 var seedWater = seedFertilizer;
                 foreach (var waterMap in waterMaps)
                 {
-                    seedWater = GetMappedSeed(seedWater, waterMap.Item1, waterMap.Item2, waterMap.Item3);
+                    seedWater = GetMappedValue(seedWater, waterMap.Item1, waterMap.Item2, waterMap.Item3);
                     if (seedWater != seedFertilizer)
                         break;
                 }
@@ -196,7 +160,7 @@ public static class IfYouGiveASeedAFertilizer
                 var seedLight = seedWater;
                 foreach (var lightMap in lightMaps)
                 {
-                    seedLight = GetMappedSeed(seedLight, lightMap.Item1, lightMap.Item2, lightMap.Item3);
+                    seedLight = GetMappedValue(seedLight, lightMap.Item1, lightMap.Item2, lightMap.Item3);
                     if (seedLight != seedWater)
                         break;
                 }
@@ -204,7 +168,7 @@ public static class IfYouGiveASeedAFertilizer
                 var seedTemperature = seedLight;
                 foreach (var temperatureMap in temperatureMaps)
                 {
-                    seedTemperature = GetMappedSeed(seedTemperature, temperatureMap.Item1, temperatureMap.Item2,
+                    seedTemperature = GetMappedValue(seedTemperature, temperatureMap.Item1, temperatureMap.Item2,
                         temperatureMap.Item3);
                     if (seedTemperature != seedLight)
                         break;
@@ -213,7 +177,7 @@ public static class IfYouGiveASeedAFertilizer
                 var seedHumidity = seedTemperature;
                 foreach (var humidityMap in humidityMaps)
                 {
-                    seedHumidity = GetMappedSeed(seedHumidity, humidityMap.Item1, humidityMap.Item2, humidityMap.Item3);
+                    seedHumidity = GetMappedValue(seedHumidity, humidityMap.Item1, humidityMap.Item2, humidityMap.Item3);
                     if (seedHumidity != seedTemperature)
                         break;
                 }
@@ -221,7 +185,7 @@ public static class IfYouGiveASeedAFertilizer
                 var seedLocation = seedHumidity;
                 foreach (var locationMap in locationMaps)
                 {
-                    seedLocation = GetMappedSeed(seedLocation, locationMap.Item1, locationMap.Item2, locationMap.Item3);
+                    seedLocation = GetMappedValue(seedLocation, locationMap.Item1, locationMap.Item2, locationMap.Item3);
                     if (seedLocation != seedHumidity)
                         break;
                 }
@@ -234,12 +198,35 @@ public static class IfYouGiveASeedAFertilizer
         return lowestLocation;
     }
 
-    private static long GetMappedSeed(long seed, long destinationStart, long sourceStart, long range)
+    private static long GetMappedValue(long value, long destinationStart, long sourceStart, long range)
     {
-        if(seed < sourceStart || seed > sourceStart + range)
-            return seed;
+        if(value < sourceStart || value > sourceStart + range)
+            return value;
         
-        return seed - sourceStart + destinationStart;
+        return value - sourceStart + destinationStart;
+    }
+
+    private static IEnumerable<long> GetMappedSeedReverse(IEnumerable<long> values, List<Tuple<long,long,long>> maps)
+    {
+        foreach (var value in values)
+        {
+            var currentValue = value;
+            foreach (var map in maps)
+            {
+                if (value < map.Item1 || value >= map.Item1 + map.Item3)
+                    continue;
+
+                currentValue = value - map.Item1 + map.Item2;
+            }
+
+            yield return currentValue;
+        }
+    }
+
+    private static IEnumerable<long> GetCurrentLocation(long start, long range)
+    {
+        for (var i = start; i < start + range; i++)
+            yield return i;
     }
 
     private enum Map
