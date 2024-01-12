@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using _2022._1;
+﻿using _2022._1;
 using _2022._4;
 using _2022._5;
 using _2022._10;
@@ -24,6 +22,8 @@ using _2023._2;
 using _2023._3;
 using _2023._4;
 using _2023._5;
+using _2023._6;
+using _2023._7;
 
 // Run2022();
 Run2023();
@@ -40,7 +40,10 @@ void Run2023()
     Console.WriteLine($"Scratchcards, sum of winning scratchcards: {Scratchcards.SumScratchcards()}");
     Console.WriteLine($"Scratchcards, number of total scratchcards: {Scratchcards.SumTotalNumberOfScratchcards()}");
     Console.WriteLine($"If You Give A Seed A Fertilizer, lowest location number of initial seed: {IfYouGiveASeedAFertilizer.LowestLocationNumberOfSeed()}");
-    Console.WriteLine($"If You Give A Seed A Fertilizer, lowest location number of initial seed ranges: {IfYouGiveASeedAFertilizer.LowestLocationNumberOfSeed(isPart2: true)}");
+    //SLOW Console.WriteLine($"If You Give A Seed A Fertilizer, lowest location number of initial seed ranges: {IfYouGiveASeedAFertilizer.LowestLocationNumberOfSeed(isPart2: true)}");
+    Console.WriteLine($"Wait for it, number of ways the record in each race can be beaten: {WaitForIt.GetNumberOfWaysToBeatRecord()}");
+    Console.WriteLine($"Wait for it, number of ways the record in the big race can be beaten: {WaitForIt.GetNumberOfWaysToBeatBigRecord()}");
+    Console.WriteLine($"Camel Cards, Calculate total winnings: {CamelCards.CalculateTotalWinnings()}");
 }
 #endregion
 

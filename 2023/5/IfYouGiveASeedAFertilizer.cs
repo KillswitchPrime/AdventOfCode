@@ -1,12 +1,12 @@
-﻿using System.Diagnostics;
-
-namespace _2023._5;
+﻿namespace _2023._5;
 
 public static class IfYouGiveASeedAFertilizer
 {
+    private static bool foundLowestLocation;
+    private static long currentLocation;
     public static long LowestLocationNumberOfSeed(bool isPart2 = false)
     {
-        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "5", "Sample.txt"));
+        var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "5", "Almanac.txt"));
         var seeds = new List<long>();
         var soilMaps = new List<Tuple<long,long,long>>();
         var fertilizersMaps = new List<Tuple<long,long,long>>();
@@ -93,38 +93,35 @@ public static class IfYouGiveASeedAFertilizer
                     locationMaps.Add(new Tuple<long, long, long>(locations[0], locations[1], locations[2]));
                     break;
             }
-            soilMaps.Sort();
-            fertilizersMaps.Sort();
-            waterMaps.Sort();
-            lightMaps.Sort();
-            temperatureMaps.Sort();
-            humidityMaps.Sort();
-            locationMaps.Sort();
         }
+        soilMaps.Sort();
+        fertilizersMaps.Sort();
+        waterMaps.Sort();
+        lightMaps.Sort();
+        temperatureMaps.Sort();
+        humidityMaps.Sort();
+        locationMaps.Sort();
 
         if (isPart2)
         {
-            foreach (var locationMap in locationMaps)
-            {
-                var currentLocation = GetCurrentLocation(locationMap.Item1, locationMap.Item3);
-                var location = GetMappedSeedReverse(currentLocation, locationMaps);
-                var humidity = GetMappedSeedReverse(location, humidityMaps);
-                var temperature = GetMappedSeedReverse(humidity, temperatureMaps);
-                var light = GetMappedSeedReverse(temperature, lightMaps);
-                var water = GetMappedSeedReverse(light, waterMaps);
-                var fertilizer = GetMappedSeedReverse(water, fertilizersMaps);
-                var soil = GetMappedSeedReverse(fertilizer, soilMaps);
+            var currentLocations = GetCurrentLocation();
+            var location = GetMappedSeedReverse(currentLocations, locationMaps);
+            var humidity = GetMappedSeedReverse(location, humidityMaps);
+            var temperature = GetMappedSeedReverse(humidity, temperatureMaps);
+            var light = GetMappedSeedReverse(temperature, lightMaps);
+            var water = GetMappedSeedReverse(light, waterMaps);
+            var fertilizer = GetMappedSeedReverse(water, fertilizersMaps);
+            var soil = GetMappedSeedReverse(fertilizer, soilMaps);
 
-                foreach (var seed in soil)
+            foreach (var seed in soil)
+            {
+                for (var i = 0; i < seeds.Count; i += 2)
                 {
-                    for (var i = 0; i < seeds.Count; i += 2)
-                    {
-                        if(seed < seeds[i] || seed > seeds[i] + seeds[i + 1])
-                            continue;
-                        
-                        
-                        return currentLocation.Last();
-                    }
+                    if(seed < seeds[i] || seed > seeds[i] + seeds[i + 1])
+                        continue;
+                    
+                    foundLowestLocation = true;
+                    return currentLocation;
                 }
             }
         }
@@ -210,23 +207,36 @@ public static class IfYouGiveASeedAFertilizer
     {
         foreach (var value in values)
         {
+            if(foundLowestLocation)
+                yield break;
+            
             var currentValue = value;
             foreach (var map in maps)
             {
+                if(foundLowestLocation)
+                    yield break;
+                
                 if (value < map.Item1 || value >= map.Item1 + map.Item3)
                     continue;
 
                 currentValue = value - map.Item1 + map.Item2;
+                break;
             }
 
             yield return currentValue;
         }
     }
 
-    private static IEnumerable<long> GetCurrentLocation(long start, long range)
+    private static IEnumerable<long> GetCurrentLocation()
     {
-        for (var i = start; i < start + range; i++)
+        for (var i = 0L; i < long.MaxValue; i++)
+        {
+            if(foundLowestLocation)
+                yield break;
+            
+            currentLocation = i;
             yield return i;
+        }
     }
 
     private enum Map
