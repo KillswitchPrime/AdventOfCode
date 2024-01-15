@@ -79,8 +79,11 @@ public static class HillClimbingAlgorithm
             foreach (var tile in currentTile.Tiles.Values.Where(t =>
                          t is not null && currentTile.Height - t.Height >= -1))
             {
-                if (tile.Distance <= currentTile.Distance + 1) continue;
-                
+                if (tile == null) 
+                    continue;
+                if (tile.Distance <= currentTile.Distance + 1)
+                    continue;
+
                 tile.Distance = currentTile.Distance + 1;
                 priorityQueue.Enqueue(tile, tile.Distance);
             }

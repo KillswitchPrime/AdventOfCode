@@ -32,7 +32,7 @@ public static class ProboscideaVolcanium
         {
             foreach (var neighbour in neighbours)
             {
-                valves[valveName].Neighbours.Add(valves[neighbour]);
+                valves[valveName].Neighbours?.Add(valves[neighbour]);
             }
         }
 
@@ -103,7 +103,10 @@ public static class ProboscideaVolcanium
 
             // Get the adjacent valves
             var adjacentValves = currentValve.Neighbours;
-            foreach (var adjacentValve in adjacentValves.Where(adjacentValve => !closedList.Contains(adjacentValve)))
+            if (adjacentValves is null) continue;
+            
+            foreach (var adjacentValve in
+                     adjacentValves.Where(adjacentValve => !closedList.Contains(adjacentValve)))
             {
                 adjacentValve.Parent = currentValve;
                 // If the valve is in the closed list or has already been opened, ignore it
@@ -111,7 +114,7 @@ public static class ProboscideaVolcanium
                 {
                     continue;
                 }
-                
+
                 // If the valve is not in the open list, add it
                 if (!openList.Contains(adjacentValve))
                 {
@@ -123,7 +126,7 @@ public static class ProboscideaVolcanium
                     // and G and F values
                     if (currentValve.G + 1 <= adjacentValve.G)
                         continue;
-                    
+
                     adjacentValve.G = currentValve.G + 1;
                     adjacentValve.H = valves.Max(v => v.FlowRate) - adjacentValve.FlowRate;
                 }
@@ -131,7 +134,7 @@ public static class ProboscideaVolcanium
         }
 
         // Return an empty path if no path was found
-        return new List<Valve>();
+        return [];
     }
     
     private static List<Valve> GetPath(Valve valve)

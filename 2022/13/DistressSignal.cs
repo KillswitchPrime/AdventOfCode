@@ -118,7 +118,7 @@ public static class DistressSignal
     {
         var packets = CreatePacketList();
 
-        var decoder = new List<JsonNode>
+        var decoder = new List<JsonNode?>
         {
             JsonNode.Parse("[[2]]"),
             JsonNode.Parse("[[6]]")
@@ -136,6 +136,9 @@ public static class DistressSignal
         if (nodeA is JsonValue && nodeB is JsonValue) {
             return (int)nodeA - (int)nodeB;
         }
+
+        if (nodeA is null || nodeB is null)
+            return 0;
 
         // It's AoC time, let's exploit FirstOrDefault! 
         // 😈 if all items are equal, compare the length of the arrays 

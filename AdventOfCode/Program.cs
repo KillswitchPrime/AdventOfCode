@@ -6,13 +6,8 @@ using _2022._11;
 using _2022._12;
 using _2022._13;
 using _2022._14;
-using _2022._15;
-using _2022._16;
-using _2022._17;
 using _2022._2;
 using _2022._3;
-using _2022._4;
-using _2022._5;
 using _2022._6;
 using _2022._7;
 using _2022._8;
@@ -44,6 +39,7 @@ void Run2023()
     Console.WriteLine($"Wait for it, number of ways the record in each race can be beaten: {WaitForIt.GetNumberOfWaysToBeatRecord()}");
     Console.WriteLine($"Wait for it, number of ways the record in the big race can be beaten: {WaitForIt.GetNumberOfWaysToBeatBigRecord()}");
     Console.WriteLine($"Camel Cards, Calculate total winnings: {CamelCards.CalculateTotalWinnings()}");
+    Console.WriteLine($"Camel Cards, Calculate total winnings with jokers: {CamelCards.CalculateTotalWinnings(withJokers: true)}");
 }
 #endregion
 

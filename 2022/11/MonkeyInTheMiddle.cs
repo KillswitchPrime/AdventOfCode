@@ -10,7 +10,7 @@ public static class MonkeyInTheMiddle
         {
             foreach (var monkey in monkeys)
             {
-                monkey.CompleteTurn();
+                monkey?.CompleteTurn();
             }
         }
 
@@ -27,7 +27,7 @@ public static class MonkeyInTheMiddle
         {
             foreach (var monkey in monkeys)
             {
-                monkey.CompleteTurn(factor);
+                monkey?.CompleteTurn(factor);
             }
         }
 
@@ -35,11 +35,11 @@ public static class MonkeyInTheMiddle
         return mostActiveMonkeys[0] * mostActiveMonkeys[1];
     }
 
-    private static List<Monkey> CreateMonkeys()
+    private static List<Monkey?> CreateMonkeys()
     {
         var file = File.ReadLines(Path.Combine(AppContext.BaseDirectory, "11", "SimianShenanigans.txt"));
 
-        var monkeys = new List<Monkey>();
+        var monkeys = new List<Monkey?>();
         var monkeyNeighbours = new List<string>();
         foreach (var line in file.Select(l => l.Trim()))
         {
