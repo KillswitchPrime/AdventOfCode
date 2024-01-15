@@ -19,6 +19,7 @@ using _2023._4;
 using _2023._5;
 using _2023._6;
 using _2023._7;
+using _2023._8;
 
 // Run2022();
 Run2023();
@@ -40,6 +41,8 @@ void Run2023()
     Console.WriteLine($"Wait for it, number of ways the record in the big race can be beaten: {WaitForIt.GetNumberOfWaysToBeatBigRecord()}");
     Console.WriteLine($"Camel Cards, Calculate total winnings: {CamelCards.CalculateTotalWinnings()}");
     Console.WriteLine($"Camel Cards, Calculate total winnings with jokers: {CamelCards.CalculateTotalWinnings(withJokers: true)}");
+    Console.WriteLine($"Haunted Wasteland, Calculate steps to ZZZ: {HauntedWasteland.CalculateStepsToZzz()}");
+    Console.WriteLine($"Haunted Wasteland, Calculate ghost steps to all **Z: {HauntedWasteland.CalculateGhostStepsToZzz()}");
 }
 #endregion
 
