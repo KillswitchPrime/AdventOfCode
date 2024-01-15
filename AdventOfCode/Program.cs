@@ -20,6 +20,7 @@ using _2023._5;
 using _2023._6;
 using _2023._7;
 using _2023._8;
+using _2023._9;
 
 // Run2022();
 Run2023();
@@ -43,6 +44,7 @@ void Run2023()
     Console.WriteLine($"Camel Cards, Calculate total winnings with jokers: {CamelCards.CalculateTotalWinnings(withJokers: true)}");
     Console.WriteLine($"Haunted Wasteland, Calculate steps to ZZZ: {HauntedWasteland.CalculateStepsToZzz()}");
     Console.WriteLine($"Haunted Wasteland, Calculate ghost steps to all **Z: {HauntedWasteland.CalculateGhostStepsToZzz()}");
+    Console.WriteLine($"Mirage Maintenance, Extrapolate History sums: {MirageMaintenance.ExtrapolateHistorySum()}");
 }
 #endregion
 
